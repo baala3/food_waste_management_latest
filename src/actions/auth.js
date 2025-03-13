@@ -17,7 +17,9 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("https://fight-hunger.herokuapp.com/api/auth");
+    const res = await axios.get(
+      "https://hunger-aid-backend.vercel.app/api/auth/getuser"
+    );
 
     dispatch({
       type: USER_LOADED,
@@ -31,7 +33,6 @@ export const loadUser = () => async (dispatch) => {
 };
 
 //Register User
-
 export const register =
   ({ name, email, password, onFail }) =>
   async (dispatch) => {
@@ -44,7 +45,7 @@ export const register =
 
     try {
       const res = await axios.post(
-        "https://fight-hunger.herokuapp.com/api/users",
+        "https://hunger-aid-backend.vercel.app/api/auth/register",
         body,
         config
       );
@@ -67,7 +68,6 @@ export const register =
   };
 
 //Login User
-
 export const login = (email, password, onFail) => async (dispatch) => {
   const config = {
     headers: {
@@ -78,7 +78,7 @@ export const login = (email, password, onFail) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      "https://fight-hunger.herokuapp.com/api/auth",
+      "https://hunger-aid-backend.vercel.app/api/auth/login",
       body,
       config
     );
@@ -105,7 +105,6 @@ export const logout = () => (dispatch) => {
 };
 
 //update User
-
 export const updateUser = (data, onSuccess) => async (dispatch) => {
   const config = {
     headers: {
@@ -117,7 +116,7 @@ export const updateUser = (data, onSuccess) => async (dispatch) => {
   }
   try {
     const res = await axios.put(
-      "https://fight-hunger.herokuapp.com/api/auth/update_user",
+      "https://hunger-aid-backend.vercel.app/api/auth/update_user",
       data,
       config
     );

@@ -13,7 +13,9 @@ import {
 
 export const getPosts = () => async (dispatch) => {
   try {
-    const res = await axios.get("https://fight-hunger.herokuapp.com/api/posts");
+    const res = await axios.get(
+      "https://hunger-aid-backend.vercel.app/api/post/allposts"
+    );
     dispatch({
       type: GET_POSTS,
       payload: res.data,
@@ -31,7 +33,14 @@ export const getPosts = () => async (dispatch) => {
 export const addLike = (id) => async (dispatch) => {
   try {
     const res = await axios.put(
-      `https://fight-hunger.herokuapp.com/api/posts/like/${id}`
+      `https://hunger-aid-backend.vercel.app/api/post/switchvote`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      }
     );
     dispatch({
       type: UPDATE_LIKES,
@@ -46,11 +55,17 @@ export const addLike = (id) => async (dispatch) => {
 };
 
 //unlike
-
 export const removeLike = (id) => async (dispatch) => {
   try {
     const res = await axios.put(
-      `https://fight-hunger.herokuapp.com/api/posts/unlike/${id}`
+      `https://hunger-aid-backend.vercel.app/api/post/switchvote`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      }
     );
     dispatch({
       type: UPDATE_LIKES,
@@ -69,7 +84,7 @@ export const removeLike = (id) => async (dispatch) => {
 
 export const deletePost = (id) => async (dispatch) => {
   try {
-    await axios.delete(`https://fight-hunger.herokuapp.com/api/posts/${id}`);
+    await axios.delete(`https://hunger-aid-backend.vercel.app/api/post/${id}`);
     dispatch({
       type: DELETE_POST,
       payload: id,
@@ -121,7 +136,7 @@ export const addPost = (formData) => async (dispatch) => {
     formData["lat"] = lat;
     formData["lon"] = lng;
     const res = await axios.post(
-      "https://fight-hunger.herokuapp.com/api/posts",
+      "https://hunger-aid-backend.vercel.app/api/post/addpost",
       formData,
       config
     );
@@ -176,7 +191,7 @@ export const updatePost = (formData, id) => async (dispatch) => {
     formData["lat"] = lat;
     formData["lon"] = lng;
     const res = await axios.put(
-      `https://fight-hunger.herokuapp.com/api/posts/${id}`,
+      `https://hunger-aid-backend.vercel.app/api/post/${id}`,
       formData,
       config
     );
@@ -197,7 +212,7 @@ export const updatePost = (formData, id) => async (dispatch) => {
 export const getPost = (id) => async (dispatch) => {
   try {
     const res = await axios.get(
-      `https://fight-hunger.herokuapp.com/api/posts/${id}`
+      `https://hunger-aid-backend.vercel.app/api/post/${id}`
     );
     dispatch({
       type: GET_POST,
