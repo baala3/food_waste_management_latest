@@ -1,0 +1,15 @@
+change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+categories:
+  - title: '✅ Tested on stg'
+    label: 'tested on stg'
+  - title: '🔕 No stg test needed'
+    label: 'no stg test needed'
+exclude-labels:
+  - 'skip-release-drafter'
+change-template: '* $TITLE ($URL) @$AUTHOR'
+template: |
+  # 🚀 Production Deployment Release
+
+  ## Untested changes
+
+  $CHANGES
