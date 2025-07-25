@@ -16,7 +16,6 @@ permissions:
 jobs:
   update_release_draft:
     permissions:
-      # write permission is to create a github release
       contents: write
       # write permission is required for autolabeler
       # otherwise, read permission is required at least
