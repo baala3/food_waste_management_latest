@@ -20,4 +20,4 @@
 
 npm-debug.log* B1C1
 yarn-debug.log*
-yarn-error.log*
+yarn-error.log* # B2C1
